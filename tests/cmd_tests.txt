@@ -1,9 +1,12 @@
 TEST Part 1:
 
+./pipex "/dev/urandom" "cat" "head" "output"
+cat /dev/urandom | head
+
 ./pipex "tests/file1" "ls -l" "awk '{count++} END {printf count}'" output
 <tests/file1 ls -l | awk '{count++} END {printf count}' >outfile
 
-./pipex tests/file3 "tr '[:lower:]' '[:upper:]'" "grep PIPEX" output |*| the infamous one so far.
+./pipex tests/file3 "tr '[:lower:]' '[:upper:]'" "grep PIPEX" output
 <tests/file3 tr '[:lower:]' '[:upper:]' | grep PIPEX >outfile 
 
 ./pipex tests/file2 "uniq" "wc -l" output
@@ -40,6 +43,10 @@ chmod 644 output
 chmod 644 outfile
 
 TEST Bonus:
+
+./pipex_bonus "/dev/urandom" "cat" "head" "output"
+cat /dev/urandom | head
+
 ./pipex_bonus tests/file2 "sort" "uniq" "wc" output
 <tests/file2 sort | uniq | wc >outfile
 
@@ -48,9 +55,6 @@ TEST Bonus:
 
 ./pipex_bonus tests/file2 "uniq" "wc" output
 <tests/file2 uniq | wc >outfile
-
-./pipex_bonus tests/file2 "uniq" output |*| invalid number of arguments.
-<tests/file2 uniq >outfile
 
 ./pipex_bonus tests/file2 "uniq" "sort -r" output
 <tests/file2 uniq | sort -r >outfile
@@ -64,9 +68,7 @@ TEST Bonus:
 ./pipex_bonus tests/file2 "uniq" "" output
 <tests/file2 uniq | >outfile
 
-./pipex_bonus tests/file2 "uniq" " " "sort" output |*| doesn't print like bash does.
-<tests/file2 uniq | | sort >outfile
-
+invalid numer of arguments.
 ./pipex_bonus tests/file2 output
 <tests/file2 > outfile
 

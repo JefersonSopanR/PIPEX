@@ -21,6 +21,9 @@
 # include <errno.h>
 # include "../libft/libft.h"
 
+char	**ft_handle_quotes(char	*command);
+char	**ft_handle_dquotes(char *command, int quotes, int i, int j);
+char	**ft_handle_quotes(char	*command);
 char	*get_path(char *cmd, char **envp);
 void	execute_command(char *command, char **envp);
 void	ft_child_process(char **av, int pfd[], char **envp);

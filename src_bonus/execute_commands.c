@@ -51,30 +51,6 @@ char	*get_path(char *cmd, char **envp)
 	return (NULL);
 }
 
-static char	**ft_handle_squotes(char *command)
-{
-	char	**split_command;
-	int		i;
-	int		j;
-	int		start;
-
-	start = 0;
-	j = 0;
-	i = 0;
-	split_command = (char **)ft_calloc(2, sizeof(char *));
-	if (!split_command)
-		return (NULL);
-	while (command[i] != ' ')
-		i++;
-	split_command[j] = ft_substr(command, 0, i);
-	start = ++i;
-	i++;
-	while (command[i] != '\'')
-		i++;
-	split_command[++j] = ft_substr(command, start + 1, i - start - 1);
-	return (split_command);
-}
-
 void	execute_command(char *command, char **envp)
 {
 	char	**split_cmd;
@@ -83,7 +59,7 @@ void	execute_command(char *command, char **envp)
 	if (command == NULL || command[0] == '\0')
 		return ;
 	if (ft_strchr(command, '\''))
-		split_cmd = ft_handle_squotes(command);
+		split_cmd = ft_handle_quotes(command);
 	else
 		split_cmd = ft_split(command, ' ');
 	path_cmd = get_path(split_cmd[0], envp);
