@@ -82,7 +82,7 @@ void	execute_command(char *command, char **envp)
 
 	if (command == NULL || command[0] == '\0')
 		return ;
-	if (ft_strchr(cmd, '\''))
+	if (ft_strchr(command, '\''))
 		split_cmd = ft_handle_squotes(command);
 	else
 		split_cmd = ft_split(command, ' ');
